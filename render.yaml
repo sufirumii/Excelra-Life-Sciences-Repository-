@@ -1,0 +1,19 @@
+# Render Blueprint — Excelra Life Sciences Learning Repository
+# Deploys as a Web Service (Node/Bun) running the Next.js SSR server.
+# Docs: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: excelra-learning-repository
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: bun install && bun run build
+    startCommand: bun run start
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+        value: file:./db/custom.db
